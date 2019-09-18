@@ -42,27 +42,70 @@ class DoublyLinkedList:
 
   def __len__(self):
     return self.length
-
+  
+  """Wraps the given value in a ListNode and inserts it 
+  as the new head of the list. Don't forget to handle 
+  the old head node's previous pointer accordingly."""
   def add_to_head(self, value):
-    pass
-
+    if (self.length == 0):
+      temp = ListNode(value)
+      self.head = temp
+      self.tail = temp
+    else:
+      self.head.insert_before(value)
+      self.head = self.head.prev
+    self.length += 1
+    
+  
+  """Removes the List's current head node, making the
+  current head's next node the new head of the List.
+  Returns the value of the removed Node."""
   def remove_from_head(self):
-    pass
+    temp = self.head
+    if self.head.next:
+      self.head.next.prev = None
+      self.head = self.head.next
+    return temp
 
+  """Wraps the given value in a ListNode and inserts it 
+  as the new tail of the list. Don't forget to handle 
+  the old tail node's next pointer accordingly."""
   def add_to_tail(self, value):
     pass
 
+  """Removes the List's current tail node, making the 
+  current tail's previous node the new tail of the List.
+  Returns the value of the removed Node."""
   def remove_from_tail(self):
-    pass
+    temp = self.tail
+    if self.tail.prev:
+      self.tail.prev.next = None
+      self.tail = self.tail.prev
+    return temp
 
+  """Removes the input node from its current spot in the 
+  List and inserts it as the new head node of the List."""
   def move_to_front(self, node):
-    pass
+    self.delete(node)
+    self.add_to_head(node.value)
 
+  """Removes the input node from its current spot in the 
+  List and inserts it as the new tail node of the List."""
   def move_to_end(self, node):
     pass
 
+  """Removes a node from the list and handles cases where
+  the node was the head or the tail"""
   def delete(self, node):
-    pass
+    if node == self.head:
+      self.head = node.next
+    if node == self.tail:
+      self.tail = node.prev
+    if node.prev:
+      node.prev.next = node.next
+    if node.next:
+      node.next.prev = node.prev
     
+  """Returns the highest value currently in the list"""
   def get_max(self):
     pass
