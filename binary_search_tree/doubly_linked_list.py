@@ -65,7 +65,11 @@ class DoublyLinkedList:
     if self.head.next:
       self.head.next.prev = None
       self.head = self.head.next
-    return temp
+    else: 
+      self.head = None
+      self.tail = None
+    self.length -= 1
+    return temp.value
 
   """Wraps the given value in a ListNode and inserts it 
   as the new tail of the list. Don't forget to handle 
@@ -81,6 +85,10 @@ class DoublyLinkedList:
     if self.tail.prev:
       self.tail.prev.next = None
       self.tail = self.tail.prev
+    else: 
+      self.tail = None
+      self.head = None
+    self.length -= 1
     return temp
 
   """Removes the input node from its current spot in the 
